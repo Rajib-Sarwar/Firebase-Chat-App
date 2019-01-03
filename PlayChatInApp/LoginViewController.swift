@@ -11,6 +11,8 @@ import Firebase
 
 class LoginViewController: UIViewController {
     
+    var messagesController: MessagesController?
+    
     let inputsContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.white
@@ -56,40 +58,12 @@ class LoginViewController: UIViewController {
             
             //successfully logged in our user
             
-//            self.modalViewController?.fetchUserAndSetupNavBarTitle()
+            self.messagesController?.fetchUserAndSetupNavBarTitle()
             
             self.dismiss(animated: true, completion: nil)
             
         })
         
-    }
-    
-    @objc func handleRegister() {
-        guard let email = emailTextField.text, let password = passwordTextField.text, let name = nameTextField.text else {
-            print("Form is not valid")
-            return
-        }
-        
-        Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
-            if err != nil {
-                print(err as Any)
-                return
-            }
-            
-            guard let uid = user?.user.uid else { return }
-            
-            let ref = Database.database().reference(fromURL: "https://chatapp-24de8.firebaseio.com/")
-            let usersReference = ref.root.child("users").child(uid)
-            let values = ["name": name,"email": email]
-            usersReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                if err != nil {
-                    print(err as Any)
-                    return
-                }
-                
-                print("Saved successfully")
-            })
-        }
     }
     
     let nameTextField: UITextField = {
@@ -134,8 +108,8 @@ class LoginViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         
-//        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
-//        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectProfileImageView)))
+        imageView.isUserInteractionEnabled = true
         
         return imageView
     }()
