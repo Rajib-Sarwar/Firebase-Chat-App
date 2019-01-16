@@ -20,6 +20,8 @@ class MessagesController: UITableViewController {
         
         checkIfUserIsLoggedIn()
         
+        observeUserMessages()
+        
         if Auth.auth().currentUser?.uid == nil {
             perform(#selector(handleLogout), with: nil, afterDelay: 0)
         }
@@ -28,6 +30,7 @@ class MessagesController: UITableViewController {
 
     @objc func handleNewMessage() {
         let newMessageController = NewMessageController()
+        newMessageController.messagesController = self
         let navController = UINavigationController(rootViewController: newMessageController)
         present(navController, animated: true, completion: nil)
     }
@@ -116,6 +119,49 @@ class MessagesController: UITableViewController {
         containerView.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
         
         self.navigationItem.titleView = titleView
+        titleView.isUserInteractionEnabled = true
+    }
+    
+    @objc func showChatControllerForUser(_ user: User) {
+        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+        chatLogController.user = user
+        navigationController?.pushViewController(chatLogController, animated: true)
+    }
+    
+    var messages = [Message]()
+    
+    func observeUserMessages() {
+
+        let ref = Database.database().reference().root.child("messages")
+        print(ref)
+        ref.observe(.childAdded, with: { (snapshot) in
+            print(snapshot)
+            if let dictionary = snapshot.value as? [String: AnyObject] {
+                let message = Message()
+                message.initWithInfo(info: dictionary)
+                self.messages.append(message)
+                self.tableView.reloadData()
+            }
+        }) { (err) in
+            print(err)
+        }
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
+        let message = messages[indexPath.row]
+        cell.textLabel?.text = message.toId
+        cell.detailTextLabel?.text = message.text
+        return cell
+        
     }
 }
 

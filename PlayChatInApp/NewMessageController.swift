@@ -29,14 +29,11 @@ class NewMessageController: UITableViewController {
             
             if let dictionary = snapshot.value as? [String: AnyObject] {
                 let user = User()
-                
-                //if you use this setter, your app will crash if your class properties don't exactly match up with the firebase dictionary keys
+                user.id = snapshot.key
                 user.email = dictionary["email"] as? String ?? "Test"
                 user.name = dictionary["name"] as? String ?? "Test"
                 user.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
                 self.users.append(user)
-                
-                //this will crash because of background thread, so lets use dispatch_async to fix
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -70,6 +67,15 @@ class NewMessageController: UITableViewController {
         }
         
         return cell
+    }
+    
+    var messagesController: MessagesController?
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dismiss(animated: true) {
+            let user = self.users[indexPath.row]
+            self.messagesController?.showChatControllerForUser(user)
+        }
     }
 }
 
