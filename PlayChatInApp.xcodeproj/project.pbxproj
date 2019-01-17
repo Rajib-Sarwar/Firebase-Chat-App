@@ -20,6 +20,7 @@
 		1A94AA5621EF77B5009D1479 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A94AA5521EF77B5009D1479 /* Message.swift */; };
 		1AC8349F21DDEFCF00173094 /* LoginViewController+handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC8349E21DDEFCF00173094 /* LoginViewController+handlers.swift */; };
 		1AC834A121DDFA0900173094 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AC834A021DDFA0900173094 /* Extensions.swift */; };
+		1AE37F1B21F07E1300DB2942 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE37F1A21F07E1300DB2942 /* UserCell.swift */; };
 		70A31FCBBBC6557D955BFA14 /* Pods_PlayChatInApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AA272A6F9F07A35FDB52360 /* Pods_PlayChatInApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		1AA272A6F9F07A35FDB52360 /* Pods_PlayChatInApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlayChatInApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AC8349E21DDEFCF00173094 /* LoginViewController+handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+handlers.swift"; sourceTree = "<group>"; };
 		1AC834A021DDFA0900173094 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		1AE37F1A21F07E1300DB2942 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		6DC999466A4DF553CAFB07C1 /* Pods-PlayChatInApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayChatInApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlayChatInApp/Pods-PlayChatInApp.release.xcconfig"; sourceTree = "<group>"; };
 		7EDED03DADC47B3DB41273B5 /* Pods-PlayChatInApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayChatInApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlayChatInApp/Pods-PlayChatInApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +93,7 @@
 				1AC834A021DDFA0900173094 /* Extensions.swift */,
 				1A94AA5321EF3C8A009D1479 /* ChatLogController.swift */,
 				1A94AA5521EF77B5009D1479 /* Message.swift */,
+				1AE37F1A21F07E1300DB2942 /* UserCell.swift */,
 			);
 			path = PlayChatInApp;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				1A85D36E21DB4DBE0094746D /* MessagesController.swift in Sources */,
 				1A85D38421DBBF7B0094746D /* User.swift in Sources */,
 				1A85D36C21DB4DBE0094746D /* AppDelegate.swift in Sources */,
+				1AE37F1B21F07E1300DB2942 /* UserCell.swift in Sources */,
 				1AC834A121DDFA0900173094 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
